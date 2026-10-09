@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Interactive discussion artifact for how Path Planning should use learner footing." />
+    <title>How should Path Planning use footing?</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f7f5;
+        --surface: #ffffff;
+        --ink: #161616;
+        --muted: #666762;
+        --line: #deded9;
+        --soft: #f0f0ed;
+        --warning-bg: #fff8e8;
+        --warning-line: #efbe40;
+        --success-bg: #eafbf2;
+        --success-line: #67d79a;
+        --radius: 18px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+      button { font: inherit; }
+      button:focus-visible { outline: 3px solid #7aa7ff; outline-offset: 2px; }
+      .page { width: min(1160px, calc(100% - 32px)); margin: 0 auto; padding: 56px 0 80px; }
+      .eyebrows { display: flex; flex-wrap: wrap; gap: 8px; }
+      .badge {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        padding: 3px 9px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+      }
+      h1 { max-width: 900px; margin: 14px 0 8px; font-size: clamp(38px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.045em; }
+      .lede { max-width: 790px; margin: 0; color: var(--muted); font-size: 18px; }
+      .rule { max-width: 920px; margin-top: 24px; border-radius: var(--radius); background: var(--ink); color: white; padding: 22px 24px; }
+      .rule strong { display: block; margin-bottom: 6px; }
+      .rule p { margin: 0; color: #c9c9c4; }
+      section { margin-top: 56px; }
+      .section-heading { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+      .number { display: grid; flex: 0 0 auto; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: var(--ink); color: white; font-size: 14px; font-weight: 750; }
+      h2 { margin: 0; font-size: 28px; letter-spacing: -0.025em; }
+      .section-heading p { margin: 3px 0 0; color: var(--muted); }
+      .grid { display: grid; gap: 16px; }
+      .two { grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr); }
+      .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: 0 2px 4px rgba(0,0,0,.03); }
+      .card-pad { padding: 24px; }
+      .card h3 { margin: 0; font-size: 18px; }
+      .muted { color: var(--muted); }
+      .small { font-size: 14px; }
+      .form-intro { margin: 6px 0 20px; color: var(--muted); font-size: 14px; }
+      .skill { margin: 0 -10px 8px; padding: 12px 10px; border-radius: 14px; }
+      .skill.active { background: var(--soft); }
+      .skill-title { margin: 0 0 10px; font-size: 14px; font-weight: 720; }
+      .choices { display: flex; flex-wrap: wrap; gap: 7px; }
+      .choice {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        padding: 6px 10px;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .choice:hover { border-color: var(--ink); color: var(--ink); }
+      .choice.selected { border-color: var(--ink); background: var(--ink); color: white; }
+      .form-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; border-top: 1px solid var(--line); padding-top: 18px; }
+      .primary { border: 0; border-radius: 10px; background: var(--ink); color: white; padding: 10px 14px; cursor: pointer; font-size: 14px; font-weight: 700; }
+      .primary:disabled { cursor: not-allowed; opacity: .3; }
+      .helper { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
+      .impact-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 15px; }
+      .impact-skill { margin: 7px 0 0; font-size: 14px; font-weight: 700; }
+      .message { margin-top: 16px; border-radius: 14px; background: var(--soft); padding: 15px; }
+      .label { margin: 0; color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+      .message p:last-child, .action p:last-child { margin: 7px 0 0; font-size: 14px; }
+      .intent-title { margin: 18px 0 8px; font-size: 14px; font-weight: 750; }
+      .intent-list { display: grid; gap: 8px; }
+      .intent {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+        padding: 12px;
+        text-align: left;
+        cursor: pointer;
+      }
+      .intent strong { display: block; font-size: 14px; }
+      .intent span { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+      .intent:hover { border-color: var(--ink); }
+      .intent.selected { border-color: var(--ink); background: var(--ink); color: white; }
+      .intent.selected span { color: #c9c9c4; }
+      .action { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
+      .callout { margin-top: 12px; border: 1px solid var(--warning-line); border-radius: 15px; background: var(--warning-bg); padding: 16px; font-size: 14px; }
+      .callout strong, .success strong { display: block; margin-bottom: 4px; }
+      .success { display: none; margin-top: 12px; border: 1px solid var(--success-line); border-radius: 15px; background: var(--success-bg); padding: 16px; font-size: 14px; }
+      .facts { margin-top: 16px; }
+      .fact { padding: 18px; }
+      .fact strong { display: block; margin-bottom: 5px; font-size: 14px; }
+      .fact p { margin: 0; color: var(--muted); font-size: 13px; }
+      .pipeline { align-items: stretch; grid-template-columns: 1fr auto 1fr auto 1fr; }
+      .pipeline .card { padding: 20px; }
+      .pipeline h3 { margin: 10px 0 6px; }
+      .pipeline p { margin: 0; color: var(--muted); font-size: 14px; }
+      .arrow { display: grid; place-items: center; color: var(--muted); font-size: 24px; }
+      .table { margin-top: 16px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+      .row { display: grid; grid-template-columns: 180px 1fr 1.35fr; gap: 16px; border-bottom: 1px solid var(--line); padding: 16px 20px; font-size: 14px; }
+      .row:last-child { border-bottom: 0; }
+      .row.head { background: var(--soft); color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; }
+      .row strong { font-size: 14px; }
+      .row .muted { color: var(--muted); }
+      .rules { margin-top: 16px; grid-template-columns: 1fr 1fr; }
+      .rules .card { padding: 20px; }
+      .rules h3 { margin-bottom: 6px; font-size: 15px; }
+      .rules p { margin: 0; color: var(--muted); font-size: 14px; }
+      .concern { padding: 20px; }
+      .concern h3 { margin-bottom: 8px; font-size: 16px; }
+      .concern p { margin: 0; color: var(--muted); font-size: 14px; }
+      .wallet { margin-top: 16px; padding: 20px; }
+      .wallet p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+      .idea { padding: 20px; }
+      .idea h3 { margin: 12px 0 7px; font-size: 17px; }
+      .idea > p { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+      .note { border-radius: 12px; background: var(--soft); padding: 14px; font-size: 13px; }
+      .summary { display: grid; gap: 10px; border-radius: 12px; background: var(--soft); padding: 14px; }
+      .summary-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; font-size: 13px; }
+      .summary-row span:first-child { color: var(--muted); }
+      .summary-row strong { text-align: right; }
+      .changes { margin-top: 16px; grid-template-columns: 1fr 1fr; }
+      .change { display: flex; gap: 14px; border-radius: var(--radius); background: var(--ink); color: white; padding: 20px; }
+      .change .number { background: white; color: var(--ink); }
+      .change h3 { margin: 0 0 5px; font-size: 15px; }
+      .change p { margin: 0; color: #c9c9c4; font-size: 13px; }
+      .footer { margin-top: 50px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: 12px; }
+
+      @media (max-width: 850px) {
+        .page { padding-top: 32px; }
+        .two, .three, .rules, .changes { grid-template-columns: 1fr; }
+        .pipeline { grid-template-columns: 1fr; }
+        .arrow::before { content: "↓"; }
+        .arrow { height: 24px; }
+        .row, .row.head { grid-template-columns: 1fr; }
+        .row.head { display: none; }
+        .row span::before { display: block; margin-bottom: 3px; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
+        .row span:nth-child(1)::before { content: "Learner answers"; }
+        .row span:nth-child(2)::before { content: "Interpretation"; }
+        .row span:nth-child(3)::before { content: "Path Planning action"; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <div class="eyebrows"><span class="badge">Discussion artifact</span><span class="badge">Path Planning</span><span class="badge">Interactive</span></div>
+        <h1>How should Path Planning use footing?</h1>
+        <p class="lede">Footing is the learner’s self-reported starting point for each Skill in a Goal. It should help Helix choose where to begin and how deeply to teach—not decide what the learner has proven or silently remove a Skill.</p>
+        <div class="rule"><strong>Proposed rule</strong><p>Keep each answer attached to its Skill or Subskill. Use it to adjust content selection, depth, and sequence. Remove a Skill only when the learner explicitly asks to remove it from the Goal.</p></div>
+      </header>
+
+      <section aria-labelledby="collect-title">
+        <div class="section-heading"><span class="number">1</span><div><h2 id="collect-title">What do we collect?</h2><p>Try the interaction. Choose a starting point for each Skill and see what it changes.</p></div></div>
+        <div class="grid two">
+          <div class="card card-pad">
+            <h3>What experience do you have with these Skills?</h3>
+            <p class="form-intro">For each Skill, choose the experience level that fits you best.</p>
+            <div id="skill-list"></div>
+            <div class="form-footer"><span class="muted small">The learner can also skip this step.</span><button id="review" class="primary" type="button">Review choices</button></div>
+            <p id="helper" class="helper" role="status"></p>
+          </div>
+          <div>
+            <div class="card card-pad" id="impact" aria-live="polite"></div>
+            <div id="success" class="success" role="status"><strong>Ready for Goal confirmation</strong>The learner can review the planning summary before Helix finalizes the Goal and sends these choices to Path Planning.</div>
+            <div class="callout"><strong>Current gap</strong>The individual answers are saved, but Path Planning currently gets one overall starting point for the Goal. Different answers are flattened before planning.</div>
+          </div>
+        </div>
+        <div class="grid three facts">
+          <div class="card fact"><strong>The useful signal is per Skill or Subskill</strong><p>Each answer is saved with the item it describes. Unanswered rows are left blank.</p></div>
+          <div class="card fact"><strong>Wallet information avoids duplicate questions</strong><p>A Skill already covered by Wallet data may not appear in this step.</p></div>
+          <div class="card fact"><strong>It is a self-report</strong><p>The answer is context for planning. It is not verified proficiency, Skill progress, or Goal completion.</p></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="use-title">
+        <div class="section-heading"><span class="number">2</span><div><h2 id="use-title">How should Path Planning use it?</h2><p>Footing should remain attached to the Skill it describes all the way into planning.</p></div></div>
+        <div class="grid pipeline">
+          <div class="card"><span class="badge">Goal</span><h3>What to build</h3><p>Confirmed Skills and Subskills, plus the target proficiency for the Goal.</p></div><div class="arrow" aria-hidden="true">→</div>
+          <div class="card"><span class="badge">Starting point</span><h3>Where to begin</h3><p>The learner’s answer for each Skill, alongside any Wallet evidence.</p></div><div class="arrow" aria-hidden="true">→</div>
+          <div class="card"><span class="badge">Path</span><h3>What changes</h3><p>Content selection, depth, sequence, checks, and an explanation the learner can review.</p></div>
+        </div>
+        <div class="table">
+          <div class="row head"><span>Learner answers</span><span>Interpretation</span><span>Path Planning action</span></div>
+          <div class="row"><span><strong>I’m not sure</strong></span><span class="muted">Do not assume prior knowledge.</span><span>Include foundations and check understanding early.</span></div>
+          <div class="row"><span><strong>Beginner</strong></span><span class="muted">The learner expects to need support.</span><span>Start with foundations and place prerequisites before application.</span></div>
+          <div class="row"><span><strong>Intermediate</strong></span><span class="muted">The learner says they know the basics.</span><span>Reduce repeated introductions and prioritize application, practice, and checks.</span></div>
+          <div class="row"><span><strong>Advanced</strong></span><span class="muted">The learner says the basics will not help them.</span><span>Ask whether to go deeper, check first, or remove this Skill from the Goal.</span></div>
+        </div>
+        <div class="grid rules"><div class="card"><h3>Plan at the smallest selectable unit</h3><p>If the selectable item is a whole Course, evaluate everything it covers before keeping, compressing, or replacing it.</p></div><div class="card"><h3>Explain the result</h3><p>Tell the learner how their answers changed the path and let them revise their choices.</p></div></div>
+      </section>
+
+      <section aria-labelledby="concerns-title">
+        <div class="section-heading"><span class="number">3</span><div><h2 id="concerns-title">What could go wrong?</h2><p>These concerns need to be resolved before footing controls path construction.</p></div></div>
+        <div class="grid three">
+          <div class="card concern"><h3>One answer does not reveal intent</h3><p>Advanced could mean “teach me harder material,” “verify me quickly,” or “leave this out.”</p></div>
+          <div class="card concern"><h3>Self-report is not evidence</h3><p>A learner can over- or underestimate their ability. Use a short check before skipping needed learning.</p></div>
+          <div class="card concern"><h3>Learner level ≠ content level</h3><p>A learner’s familiarity and a Course’s Beginner, Intermediate, or Advanced label describe different things.</p></div>
+          <div class="card concern"><h3>Courses cover several Skills</h3><p>One Advanced answer should not remove a Course that also covers material the learner still needs.</p></div>
+          <div class="card concern"><h3>The current summary loses detail</h3><p>Different answers are reduced to one starting point for the whole Goal before planning.</p></div>
+          <div class="card concern"><h3>Starting point is not the destination</h3><p>Target proficiency says where the path should end. Footing says where it should begin.</p></div>
+        </div>
+        <div class="card wallet"><strong>Wallet boundary</strong><p>Answering this step should not silently create a self-claim. If offered, “Add this to my Skills Wallet” should be a separate explicit choice and distinct from verified proficiency.</p></div>
+      </section>
+
+      <section aria-labelledby="improve-title">
+        <div class="section-heading"><span class="number">4</span><div><h2 id="improve-title">How could we improve the experience?</h2><p>Make the effect of each answer visible before the learner confirms the Goal.</p></div></div>
+        <div class="grid three">
+          <div class="card idea"><span class="badge">Before answering</span><h3>Explain what will change</h3><p>Your answers help Helix decide what to include, where your path begins, and where it can move faster.</p><div class="note">This does not grade you or mark a Skill complete. You can change your answers later.</div></div>
+          <div class="card idea"><span class="badge">After Advanced</span><h3>Ask what the learner wants</h3><p>Do not translate Advanced directly into exclusion.</p><div id="idea-intents" class="intent-list"></div></div>
+          <div class="card idea"><span class="badge">Before Goal confirmation</span><h3>Show the planning summary</h3><p>Let the learner see and correct the consequence before the Goal is final.</p><div id="summary" class="summary"></div></div>
+        </div>
+        <div class="grid changes"><div class="change"><span class="number">1</span><div><h3>Change the handoff</h3><p>Send the answer for each Skill or Subskill instead of only one value for the whole Goal. Keep target proficiency separate.</p></div></div><div class="change"><span class="number">2</span><div><h3>Change the confirmation flow</h3><p>Collect footing before final Goal confirmation, clarify Advanced answers, then show what will be removed, compressed, or taught more deeply.</p></div></div></div>
+      </section>
+      <div class="footer">Standalone discussion artifact · No learner data is collected or sent anywhere.</div>
+    </main>
+
+    <script>
+      const levels = ["I’m not sure", "Beginner", "Intermediate", "Advanced"];
+      const skills = ["Design evaluation rubrics", "Build representative test cases", "Interpret evaluation results"];
+      const state = {
+        answers: { [skills[0]]: "Intermediate", [skills[1]]: "Beginner", [skills[2]]: "Advanced" },
+        intents: {},
+        active: skills[2],
+        reviewed: false,
+      };
+      const intentData = {
+        deeper: ["Go deeper", "Keep the Skill and focus on what is new."],
+        check: ["Check first", "Use a short check before choosing the depth."],
+        remove: ["Remove from my Goal", "Remove the Skill before the Goal is confirmed."],
+      };
+
+      function copyFor(answer, intent) {
+        if (answer === "I’m not sure") return ["That’s okay. We’ll include the foundations you may need and check your understanding early.", "Keep the Skill. Include foundations and an early check."];
+        if (answer === "Beginner") return ["We’ll start with the foundations and build toward applying this Skill in your Goal.", "Keep the Skill. Teach prerequisites before application."];
+        if (answer === "Intermediate") return ["We’ll move quickly through the basics and focus your path on application and practice.", "Keep the Skill. Compress introductions and prioritize practice and checks."];
+        if (intent === "deeper") return ["We’ll keep this Skill in your Goal and focus on advanced or Goal-specific material.", "Keep the Skill. Select material that extends what the learner already knows."];
+        if (intent === "check") return ["We’ll begin with a short check, then decide where your path should start.", "Keep the Skill. Add a quick check before choosing the remaining depth."];
+        if (intent === "remove") return ["We’ll remove this Skill from your Goal. It will not be included in the path we build.", "Remove the Skill before Goal confirmation. Do not send it to Path Planning."];
+        return ["You said you know this well. Tell us whether you want to go deeper, check first, or leave it out of this Goal.", "Wait for an explicit choice. Advanced alone does not remove the Skill."];
+      }
+
+      function unresolved() { return skills.some(skill => state.answers[skill] === "Advanced" && !state.intents[skill]); }
+      function summaryLabel(skill) {
+        const answer = state.answers[skill];
+        if (answer === "I’m not sure" || answer === "Beginner") return "Include foundations";
+        if (answer === "Intermediate") return "Move faster";
+        return state.intents[skill] ? intentData[state.intents[skill]][0] : "Choose next step";
+      }
+      function chooseLevel(skill, level) {
+        state.answers[skill] = level;
+        state.active = skill;
+        state.reviewed = false;
+        if (level !== "Advanced") delete state.intents[skill];
+        render();
+      }
+      function chooseIntent(intent) {
+        state.answers[state.active] = "Advanced";
+        state.intents[state.active] = intent;
+        state.reviewed = false;
+        render();
+      }
+      function intentButtons() {
+        return Object.entries(intentData).map(([key, [title, body]]) => `<button type="button" class="intent ${state.intents[state.active] === key ? "selected" : ""}" aria-pressed="${state.intents[state.active] === key}" data-intent="${key}"><strong>${title}</strong><span>${body}</span></button>`).join("");
+      }
+      function bindIntentButtons(root) { root.querySelectorAll("[data-intent]").forEach(button => button.addEventListener("click", () => chooseIntent(button.dataset.intent))); }
+
+      function render() {
+        const list = document.getElementById("skill-list");
+        list.innerHTML = skills.map(skill => `<div class="skill ${state.active === skill ? "active" : ""}"><p class="skill-title">${skill}</p><div class="choices">${levels.map(level => `<button type="button" class="choice ${state.answers[skill] === level ? "selected" : ""}" aria-pressed="${state.answers[skill] === level}" data-skill="${skill}" data-level="${level}">${level}</button>`).join("")}</div></div>`).join("");
+        list.querySelectorAll("[data-level]").forEach(button => button.addEventListener("click", () => chooseLevel(button.dataset.skill, button.dataset.level)));
+
+        const answer = state.answers[state.active];
+        const intent = state.intents[state.active];
+        const [learner, planner] = copyFor(answer, intent);
+        const impact = document.getElementById("impact");
+        impact.innerHTML = `<div class="impact-header"><span class="badge">Interactive example</span><span class="badge">${answer}</span></div><h3>What this answer changes</h3><p class="impact-skill">${state.active}</p><div class="message"><p class="label">What the learner sees</p><p>${learner}</p></div>${answer === "Advanced" ? `<p class="intent-title">What should Helix do?</p><div class="intent-list">${intentButtons()}</div>` : ""}<div class="action"><p class="label">Path Planning action</p><p>${planner}</p></div>`;
+        bindIntentButtons(impact);
+
+        const hasUnresolved = unresolved();
+        const review = document.getElementById("review");
+        review.disabled = hasUnresolved;
+        document.getElementById("helper").textContent = hasUnresolved ? "Choose what “Advanced” should do before continuing." : "All choices have a clear planning consequence.";
+        document.getElementById("success").style.display = state.reviewed ? "block" : "none";
+
+        const ideas = document.getElementById("idea-intents");
+        ideas.innerHTML = intentButtons();
+        bindIntentButtons(ideas);
+        document.getElementById("summary").innerHTML = skills.map(skill => `<div class="summary-row"><span>${summaryLabel(skill)}</span><strong>${skill}</strong></div>`).join("");
+      }
+
+      document.getElementById("review").addEventListener("click", () => { state.reviewed = true; render(); });
+      render();
+    </script>
+  </body>
+</html>
