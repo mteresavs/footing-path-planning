@@ -67,6 +67,7 @@
     .skill-label { font-size:14px; font-weight:650; margin-bottom:10px; }
     .choices { display:flex; flex-wrap:wrap; gap:6px; }
     .choices .choice { padding:6px 10px; font-size:12px; }
+    .level-description { margin-top:8px; font-size:13px; color:var(--muted); }
     .bar { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding-top:16px; border-top:1px solid var(--line); margin-top:16px; }
     .intent { width:100%; padding:12px; border:1px solid var(--line); border-radius:12px; background:var(--paper); text-align:left; }
     .intent strong { display:block; font-size:14px; }
@@ -120,24 +121,25 @@
     </header>
 
     <section aria-labelledby="goal-title">
-      <div class="heading"><span class="number">1</span><div><h2 id="goal-title">A Goal gives the learning a purpose</h2><p>“Learn Excel” names a topic. “Build a monthly spending report in Excel” tells us what the learner wants to do with it.</p></div></div>
+      <div class="heading"><span class="number">1</span><div><h2 id="goal-title">A Goal gives the learning a purpose</h2><p>“Learn management” names a topic. “Create a clear plan for my team’s next month” tells us what the learner wants to do with it.</p></div></div>
       <div class="grid two">
         <div class="card">
           <div class="eyebrow">One example throughout</div>
           <div class="mode" role="group" aria-label="Goal type"><button class="choice" data-mode="personal" aria-pressed="true">Personal Goal</button><button class="choice" data-mode="assigned" aria-pressed="false">Assigned static path</button></div>
-          <h3 class="goal-title">Build a monthly spending report in Excel</h3>
-          <div class="goal-line"><strong>Sort and filter data</strong><span>Organize expenses by date and show only the month you need.</span></div>
-          <div class="goal-line"><strong>Calculate totals with formulas</strong><span>Add up spending for the month and for each category.</span></div>
-          <div class="goal-line"><strong>Create charts</strong><span>Show which categories account for the most spending.</span></div>
-          <p class="small muted spaced">Plain-language Subskill examples and illustrative outcomes, not official taxonomy labels or proficiency definitions.</p>
+          <h3 class="goal-title">Create a clear plan for my team’s next month</h3>
+          <div class="goal-line"><strong>Team Direction</strong><span>For this Goal: set team goals and define what success looks like.</span></div>
+          <div class="goal-line"><strong>Work Coordination</strong><span>For this Goal: organize the work so people know what needs to happen.</span></div>
+          <div class="goal-line"><strong>Team Collaboration</strong><span>For this Goal: agree how the team will work together.</span></div>
+          <p class="small muted spaced">Subskill names from the Team Management example in the Skills Definition Framework. The Goal and its focus statements are proposed examples—not a claim to cover each whole Subskill.</p>
+          <details id="blueprint-example" class="spaced"><summary>See the actual Blueprint behind Team Direction</summary><div class="goal-line"><strong>Skill → Team Management</strong><span>The broader capability.</span></div><div class="goal-line"><strong>Subskill → Team Direction</strong><span>Turning organizational priorities into team goals, roles, decision rights, standards, and success measures.</span></div><div class="goal-line"><strong>Dimension → Goal and Measure Design</strong><span>A narrower part of Team Direction.</span></div><div class="goal-line"><strong>Learning objective</strong><span>“Define measurable success criteria for each team goal.”</span></div><p>Other Team Direction dimensions in the source are Priority Translation and Role and Decision Architecture. A check of one objective does not cover all of them. <a href="https://docs.google.com/document/d/1jS3ahKZrFTCPGWuWvCuCabw9u7vJa8mAWYZtAoYt0As/edit" target="_blank" rel="noopener">Source: Skills Definition Framework, draft September 23</a>.</p></details>
           <div id="goal-context" class="note spaced" aria-live="polite"></div>
         </div>
         <div class="card">
           <h3>Why it matters</h3>
           <div class="goal-line spaced"><strong>For the learner</strong><span>Know why this learning is relevant and what it should help you do.</span></div>
-          <div class="goal-line"><strong>For the planner</strong><span>Choose content for a specific outcome, rather than everything about Excel.</span></div>
+          <div class="goal-line"><strong>For the planner</strong><span>Choose content for a specific outcome, rather than everything about team management.</span></div>
           <div class="goal-line"><strong>For judging success later</strong><span>Define what “able to do it” means. Finishing content alone cannot answer that.</span></div>
-          <div class="note spaced"><strong>Starting point / footing:</strong> “I’m a beginner at formulas.”<br><strong>Target:</strong> “I need to calculate spending by category without help.”<br><strong>Path:</strong> the learning that helps close that gap.</div>
+          <div class="note spaced"><strong>Starting point / footing:</strong> “I need support to set team goals.”<br><strong>Target:</strong> “I want to set clear team goals reliably on real work.”<br><strong>Path:</strong> the learning that helps close that gap.</div>
           <p class="small muted spaced">A target describes the capability needed for this Goal. Not everyone needs to become Advanced. Personal target-level collection still needs alignment; assigned targets come from the admin.</p>
         </div>
       </div>
@@ -146,11 +148,11 @@
     <section aria-labelledby="size-title">
       <div class="heading"><span class="number">2</span><div><h2 id="size-title">How big should a Goal be?</h2><p>Small enough to explain what the learner will be able to do. A broad ambition can need several focused Goals—not an arbitrary five-Subskill slice presented as the whole thing.</p></div></div>
       <div class="grid two">
-        <div class="card"><span class="badge">Alpha · focused Goal</span><h3 class="spaced">One manageable outcome, up to five Subskills</h3><p class="small muted">Start with something like the monthly spending report. If the request is broader, help the learner choose and confirm a smaller outcome before planning.</p><p class="small muted">Five is the current planning boundary, not a definition of how big someone’s ambition can be. Do not quietly drop the rest or imply the smaller path covers it all.</p></div>
-        <div class="card"><span class="badge">Beta direction · broad Goal</span><h3 class="spaced">Keep the ambition; break down the work</h3><p class="small muted">Help the learner review smaller, related Goals. Each gets its own Subskills, targets, and path, while the larger Goal explains how they fit together.</p><p class="small muted">Consider expected effort, prerequisites, content availability, and what could be assessed—not only the number of Subskills. Splitting does not itself validate achievement.</p></div>
+        <div class="card"><span class="badge">Alpha · focused Goal</span><h3 class="spaced">One manageable outcome, up to five Subskills</h3><p class="small muted">Start with something like the monthly team plan. If the request is broader, help the learner choose and confirm a smaller outcome before planning.</p><p class="small muted">Five is the current planning boundary, not a definition of how big someone’s ambition can be. Do not quietly drop the rest or imply the smaller path covers it all.</p></div>
+        <div class="card"><span class="badge">Beta direction · broad Goal</span><h3 class="spaced">Keep the ambition; break down the work</h3><p class="small muted">Help the learner review smaller, related Goals. Each gets its own Subskills, targets, and path, while the larger Goal explains how they fit together.</p><p class="small muted">Use the Blueprint to examine the actual capability areas underneath each Subskill. Three Subskills can still contain a lot of learning. Consider effort, prerequisites, and coverage—not just the count.</p></div>
       </div>
       <div class="card spaced">
-        <span class="badge">Try a broader request</span><h3 class="goal-title">“I want to manage my small business finances in Excel.”</h3>
+        <span class="badge">Try a broader request</span><h3 class="goal-title">“I want to become an effective team manager.”</h3>
         <div class="mode" role="group" aria-label="Broad Goal example"><button class="choice" data-horizon="alpha" aria-pressed="true">What Alpha does</button><button class="choice" data-horizon="beta" aria-pressed="false">How Beta could split it</button></div>
         <div id="broad-result" aria-live="polite"></div>
       </div>
@@ -161,14 +163,15 @@
       <div class="heading"><span class="number">3</span><div><h2 id="footing-title">Alpha: use the starting point to plan</h2><p>Footing has two jobs: help select appropriate content, and let the learner say what they already know and want to focus on. A level alone does not tell us what they want to leave out.</p></div></div>
       <div class="note spaced"><strong>The personal Goal flow:</strong> describe the outcome → review the Subskills → share a starting level → confirm the Goal → get a path.<br>Explain upfront: “This learning helps you work toward your Goal. Goal achievement checking is not available in Alpha.”</div>
       <div class="note spaced"><strong>Three different answers:</strong><br>Starting level: “Where am I now?” → helps choose learning.<br>Target level: “Where do I want to get to?” → defines the intended Goal.<br>Ending self-report: “Where do I think I am now?” → supports reflection.<br><span class="muted">Target-setting for personal Goals is the intended direction; its Alpha scope still needs agreement. Assigned targets come from the admin.</span></div>
-      <details class="spaced"><summary>Will learners understand the proficiency levels?</summary><p>That is an open question, not something the shared labels solve. Skills has raised concerns about the reliability of self-claims and their usefulness to employers. Use plain-language descriptions of what a learner can do, aligned with Skills’ Subskill definitions, and test whether learners interpret them as intended.</p><p>For formulas, an example question to test is “Can you total spending by category on your own, with help, or not yet?” This is a wording exploration, not a new proficiency scale or an approved mapping. Use the same agreed wording at the beginning and end. Beginner / Intermediate / Advanced remain placeholders here. “I’m not sure” and skipping are not levels.</p></details>
+      <details class="spaced"><summary>Will learners understand the proficiency levels?</summary><p>That is an open question, not something the shared labels solve. Skills has raised concerns about the reliability of self-claims and their usefulness to employers. Use plain-language descriptions of what a learner can do, aligned with Skills’ Subskill definitions, and test whether learners interpret them as intended.</p><p>For Team Direction, a question to test is “Can you set clear team goals, roles, and success measures?” This is a wording exploration, not a new proficiency scale or an approved mapping. Use the same agreed wording at the beginning and end. The four levels below come from the September measurement brief. Their use for self-reporting and current rollout status still need Skills confirmation. “I’m not sure” and skipping are not levels.</p></details>
+      <details class="spaced"><summary>Where the four levels come from</summary><p>The <a href="https://docs.google.com/document/d/12o4OFNM0XOUTgC1MVASEss0sTX7nu6P6uD42L1w2iJw/edit" target="_blank" rel="noopener">Skill Measurement Data: Product Brief, section 02</a> proposes Foundational, Developing, Proficient, and Advanced for current and target proficiency. Descriptions in this demo paraphrase that brief as self-report options; they are not validated questions or evidence of mastery.</p><p>The Blueprint supplies the scope of the capability. It does not supply these four proficiency thresholds. Blueprint ordering, course difficulty, and trust categories such as platform-attested are not proficiency levels. The brief’s older delivery assumptions do not override the current Alpha boundary.</p></details>
       <div id="assigned-boundary" class="card" hidden><span class="badge">Assigned static path · Alpha</span><h3 class="spaced">The admin already set the Goal and path</h3><p class="muted">Keep the assigned Subskills, targets, and required content. We are not adding learner target-setting or pre-start path personalization here. A learner’s confidence does not waive the assignment or its requirements.</p><p class="small">Switch to Personal Goal above to explore the proposed footing flow. End-of-path reflection is still shown below as an idea for discussion.</p></div>
       <div id="personal-footing">
         <div class="grid two">
           <div class="card">
             <span class="badge">Try the proposal · sample answers prefilled</span>
             <h3 class="spaced">Where would you place yourself in each area today?</h3>
-            <p class="small muted">Choose the level that best describes what you can do. Your answers help us choose the learning for you; they do not prove your level or change your Goal’s targets. In the designed experience, each option needs the Skills-defined description for this Subskill.</p>
+            <p class="small muted">Choose the description that best fits what you can do across the named Subskill—not just one task. The levels below use the measurement brief’s proposed meanings. You can say you’re unsure.</p>
             <div id="skill-list"></div>
             <div class="bar"><button id="review" class="primary">Review Goal and planning choices</button><button id="skip" class="secondary">Skip answers</button></div>
             <p id="helper" class="small muted spaced" role="status"></p>
@@ -213,7 +216,7 @@
       <div class="heading"><span class="number">5</span><div><h2 id="change-title">Later: let the Goal change with the learner</h2><p>Changing the outcome is different from swapping a course. Show what changes, what stays, and what work carries over before asking the learner to confirm.</p></div></div>
       <div class="card">
         <span class="badge">Future exploration · not Alpha</span>
-        <div class="spaced"><label for="goal-change">What does the learner want to change?</label><select id="goal-change"><option value="content">“Same spending report, but a different course.”</option><option value="scope">“I also want to forecast next month’s spending.”</option><option value="direction">“Actually, I want to focus on managing cash flow.”</option></select></div>
+        <div class="spaced"><label for="goal-change">What does the learner want to change?</label><select id="goal-change"><option value="content">“Same team plan, but a different course.”</option><option value="scope">“I also want to coach someone who is struggling.”</option><option value="direction">“Actually, I want to focus on resolving team conflict.”</option></select></div>
         <div id="change-result" class="spaced" aria-live="polite"></div>
       </div>
       <div class="note spaced"><strong>Preserve the learner’s work:</strong> review the revised outcome, Subskills, and targets; explain the effect on remaining learning; keep relevant completed work and history. Do not replace the current path until the learner confirms. Assigned Goals keep the admin’s permissions and requirements.</div>
@@ -226,43 +229,50 @@
         <details><summary>1. Targets and future Goal achievement</summary><p>Agree the target capability for each required Subskill and the evidence needed to establish it. Keep that definition consistent while Alpha exposes the validation gap. Product, Skills, Assessments, and Enterprise need the same meaning.</p></details>
         <details><summary>2. The LEX ending</summary><p>Without an end-of-path assessment, ask for a second self-report using the same Subskills and proficiency descriptions. Show any platform-attested evidence separately, only when supplied by LEX / Skills. Neither completes the Goal in Alpha. The end-of-path assessment itself is a coming-soon placeholder.</p></details>
         <details><summary>3. Target proficiency and planning</summary><p>Keep admin-provided targets. Do not add learner target-setting to assigned static paths. Agree whether personal Goal creation needs a clearer expected capability now, and what target proficiency collection belongs in follow-up work. Footing adjusts the route; it does not silently change the destination.</p></details>
-        <details><summary>4. Understandable levels, useful signals, and the Wallet boundary</summary><p>Skills supplies the Subskill proficiency definitions; Product and Design test whether learners understand them. Align before-and-after wording, allow uncertain or skipped answers, and do not assume ratings are comparable across learners. Decide separately whether these responses should become Wallet self-claims and who may see them. Their enterprise value is unproven.</p></details>
+        <details><summary>4. Understandable levels, useful signals, and the Wallet boundary</summary><p>Confirm the measurement brief’s four-level vocabulary with Skills, then test the self-report wording against actual Blueprint scope. Align before-and-after wording, allow uncertain or skipped answers, and do not assume ratings are comparable across learners. Decide separately whether these responses should become Wallet self-claims and who may see them. Their enterprise value is unproven.</p></details>
         <details><summary>5. What proves the end-to-end loop works?</summary><p>Distinguish an Alpha experience that communicates the gap from a tested system that validates Goal targets. Reflection may be useful feedback, but it does not establish that assessment, proficiency calculation, and Goal achievement are connected.</p></details>
         <details><summary>6. Broad Goals and later edits</summary><p>Confirm Beta decomposition scope and reconcile the WIP milestone labels. Define how a larger Goal preserves its meaning across smaller Goals, how coverage gaps are shown, and what users can change. Goal editing and validation belong in follow-up PRDs with their own scope.</p></details>
       </div>
-      <details class="spaced"><summary>Sources and limits</summary><p>Based on the October 9 discussion, the follow-up product direction, and the <a href="https://docs.google.com/spreadsheets/d/1SUMPsEsG_vWCunib4RkOWGbvNgDkZuqoScKDf2u0x84/edit?gid=1609163590#gid=1609163590" target="_blank" rel="noopener">WIP User Stories V2</a>, read October 9. PRE-US-01 / 37 describe concrete Goals and Subskills; PRE-US-04 / 31 / 39 cover reviewing the starting point and scope before planning. The decomposition and editing stories are listed in their sections above.</p><p>WIP milestones are not delivery confirmation. Broad Goal decomposition is shown as Beta per the latest product direction, despite Alpha labels on several source rows. The later meeting selected a coming-soon end-of-path assessment and ruled out deriving skill progress from static-path activity.</p><p>The supplied <em>Helix Skills Technical Homebase</em> export contains only the introduction and tab list, not Skills Measurement definitions. Exact levels, descriptions, attestation eligibility, and availability still need Skills / LEX confirmation. All interactive results are examples—not proof that capabilities have shipped.</p></details>
+      <details class="spaced"><summary>Sources and limits</summary><p>Based on the October 9 discussion, the follow-up product direction, and the <a href="https://docs.google.com/spreadsheets/d/1SUMPsEsG_vWCunib4RkOWGbvNgDkZuqoScKDf2u0x84/edit?gid=1609163590#gid=1609163590" target="_blank" rel="noopener">WIP User Stories V2</a>, read October 9. PRE-US-01 / 37 describe concrete Goals and Subskills; PRE-US-04 / 31 / 39 cover reviewing the starting point and scope before planning. The decomposition and editing stories are listed in their sections above.</p><p>WIP milestones are not delivery confirmation. Broad Goal decomposition is shown as Beta per the latest product direction, despite Alpha labels on several source rows. The later meeting selected a coming-soon end-of-path assessment and ruled out deriving skill progress from static-path activity.</p><p>Blueprint grounding: <a href="https://docs.google.com/document/d/1-RWdOSZdJYEKSSBxooqgyUO_mv-avVhsfGq6sPNdFx8/edit" target="_blank" rel="noopener">Skills Technical Homebase</a> and its linked <a href="https://docs.google.com/document/d/1jS3ahKZrFTCPGWuWvCuCabw9u7vJa8mAWYZtAoYt0As/edit" target="_blank" rel="noopener">Skills Definition Framework</a> (draft September 23). The Team Management names and Team Direction hierarchy come from the framework; our Goal, groupings, and task scenarios are proposals. Level names and meanings come separately from <a href="https://docs.google.com/document/d/12o4OFNM0XOUTgC1MVASEss0sTX7nu6P6uD42L1w2iJw/edit" target="_blank" rel="noopener">Skill Measurement Data: Product Brief</a> (September 17). The sources are evolving: they establish the basis, not confirmation of a shipped scale, approved self-report questions, or full assessment coverage.</p></details>
     </section>
     <footer>Interactive discussion artifact · Example data only · Your choices stay in this browser tab and reset on reload. No Goal, Wallet, or assessment records are changed.</footer>
   </main>
   <script>
     const broadGoals = [
-      {title:'Understand monthly spending', outcome:'Build the monthly spending report from our example.', skills:'Sort and filter data · Calculate totals with formulas · Create charts', contribution:'Know where money is going before deciding what to change.'},
-      {title:'Build a budget', outcome:'Plan spending and compare actual costs with the plan.', skills:'Set up a budget table · Calculate differences · Compare spending scenarios', contribution:'Turn the spending picture into a plan for the next month.'},
-      {title:'Plan cash flow', outcome:'Estimate whether there will be enough cash to cover upcoming bills.', skills:'Schedule cash inflows and outflows · Calculate running balances · Identify cash shortfalls', contribution:'Understand when money is available, not only how much was spent.'}
+      {title:'Set up the team’s month', outcome:'Create the monthly team plan from our example.', skills:'Team Direction · Work Coordination · Team Collaboration', contribution:'Give the team shared goals, clear work, and a way to collaborate.'},
+      {title:'Support performance and growth', outcome:'Support team members in meeting expectations and developing their capabilities.', skills:'Performance Accountability · Capability Development', contribution:'Help people deliver and develop, beyond organizing the work.'},
+      {title:'Handle challenges and change', outcome:'Help the team handle issues, digital responsibilities, and change.', skills:'Team Issue Resolution · Responsible Digital Management · Change Leadership', contribution:'Address responsibilities that the first monthly-plan Goal does not cover.'}
     ];
     let horizon = 'alpha', broadIndex = 0;
     function renderBroadGoal() {
       document.querySelectorAll('[data-horizon]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.horizon === horizon)));
       const goal = broadGoals[broadIndex];
       document.getElementById('broad-result').innerHTML = horizon === 'alpha'
-        ? '<div class="note"><strong>Help choose a focused first Goal.</strong><p>“That includes reporting, budgeting, and cash-flow planning. Would you like to start by building a monthly spending report?”</p></div><div class="goal-line spaced"><strong>What this path would cover</strong><span>Sorting expenses, calculating totals, and making charts.</span></div><div class="goal-line"><strong>What it would not cover</strong><span>Budgeting or cash-flow planning. Confirm the narrower outcome; do not present it as the full business-finance Goal.</span></div><p class="small muted spaced">Alpha does not create a linked family of Goals in this proposal.</p>'
-        : `<div class="note"><strong>Broad Goal: manage my small business finances in Excel</strong><p>Propose three connected Goals, each with its own path. Review the split with the learner before creating them.</p></div><div class="mode" role="group" aria-label="Smaller Goals">${broadGoals.map((g,i) => `<button class="choice" data-child-goal="${i}" aria-pressed="${i === broadIndex}">${i + 1}. ${g.title}</button>`).join('')}</div><div class="card"><span class="badge">Smaller Goal ${broadIndex + 1} · illustrative</span><h3 class="spaced">${goal.outcome}</h3><div class="goal-line spaced"><strong>Its Subskills</strong><span>${goal.skills}</span></div><div class="goal-line"><strong>Why it belongs</strong><span>${goal.contribution}</span></div><p class="small muted">Its own path, with targets and effort to review. These are plain-language examples, not official taxonomy mappings or an exhaustive finance curriculum.</p></div><p class="small muted spaced">Keep the broad Goal visible across paths. Show learning activity without converting it into a percentage of skill achievement. Missing outcome coverage stays explicit.</p>`;
+        ? '<div class="note"><strong>Help choose a focused first Goal.</strong><p>“That includes setting direction, supporting people, and handling change. Would you like to start with a clear plan for next month?”</p></div><div class="goal-line spaced"><strong>What this path would cover</strong><span>Setting team goals, coordinating work, and agreeing how to collaborate.</span></div><div class="goal-line"><strong>What it would not cover</strong><span>Performance development, issue resolution, and change leadership. Confirm the narrower outcome; do not present it as the full management Goal.</span></div><p class="small muted spaced">Alpha does not create a linked family of Goals in this proposal.</p>'
+        : `<div class="note"><strong>Broad Goal: become an effective team manager</strong><p>Propose three connected Goals, each with its own path. Review the split with the learner before creating them.</p></div><div class="mode" role="group" aria-label="Smaller Goals">${broadGoals.map((g,i) => `<button class="choice" data-child-goal="${i}" aria-pressed="${i === broadIndex}">${i + 1}. ${g.title}</button>`).join('')}</div><div class="card"><span class="badge">Smaller Goal ${broadIndex + 1} · illustrative</span><h3 class="spaced">${goal.outcome}</h3><div class="goal-line spaced"><strong>Its Subskills</strong><span>${goal.skills}</span></div><div class="goal-line"><strong>Why it belongs</strong><span>${goal.contribution}</span></div><p class="small muted">Its own path, with targets and effort to review. These eight Subskill names come from the source’s Team Management example; grouping them into these three Goals is our proposal, not an approved Blueprint mapping.</p></div><p class="small muted spaced">Keep the broad Goal visible across paths. Show learning activity without converting it into a percentage of skill achievement. Missing outcome coverage stays explicit.</p>`;
     }
     function renderGoalChange() {
       const choice = document.getElementById('goal-change').value;
       const examples = {
         content:'<h3>Keep the Goal; change the learning</h3><p class="small muted">The outcome and Subskills stay the same. Review a suitable course replacement and how it affects the remaining path. A content preference is not a new Goal.</p>',
-        scope:'<h3>Review the bigger outcome before replanning</h3><p class="small muted">Forecasting adds work beyond the original report. Show the added Subskills and effort. If the Goal is now too broad, propose a separate, linked Goal. Keep the existing path if it still fits; otherwise preview a replacement and what completed work carries over.</p>',
-        direction:'<h3>Make the new direction an explicit choice</h3><p class="small muted">Offer a cash-flow Goal and explain how it differs from the spending report. Let the learner choose what to pause or replace. Preserve the previous Goal’s history and useful completed work; do not silently rewrite it or change other Goals.</p>'
+        scope:'<h3>Review the bigger outcome before replanning</h3><p class="small muted">Coaching adds work beyond the original team plan. Show the added Subskills and effort. If the Goal is now too broad, propose a separate, linked Goal. Keep the existing path if it still fits; otherwise preview a replacement and what completed work carries over.</p>',
+        direction:'<h3>Make the new direction an explicit choice</h3><p class="small muted">Offer a team-conflict Goal and explain how it differs from the monthly plan. Let the learner choose what to pause or replace. Preserve the previous Goal’s history and useful completed work; do not silently rewrite it or change other Goals.</p>'
       };
       document.getElementById('change-result').innerHTML = examples[choice];
     }
-    // Illustrative placeholders: replace with Skills-defined Subskill levels and descriptions.
+    // Proposed four-level vocabulary from Skill Measurement Data: Product Brief, section 02.
     // Both entry points share this list; uncertainty is not a proficiency level.
-    const proficiencyLevels = ['Beginner','Intermediate','Advanced'];
+    const proficiencyLevels = ['Foundational','Developing','Proficient','Advanced'];
+    const levelMeanings = {
+      'I’m not sure':'I cannot confidently choose a level yet.',
+      Foundational:'I can do this with support and a worked example.',
+      Developing:'I can do this unaided, but it takes deliberate effort.',
+      Proficient:'I can do this reliably on a real task.',
+      Advanced:'I can do this in unfamiliar conditions, repeatedly, or in a new domain.'
+    };
     const levels = ['I’m not sure', ...proficiencyLevels];
-    const skills = ['Sort and filter data','Calculate totals with formulas','Create charts'];
-    const state = { mode:'personal', answers:['Intermediate','Beginner','Advanced'], intents:{}, active:2, reviewed:false, ending:{}, path:'finished', evidence:'unavailable' };
+    const skills = ['Team Direction','Work Coordination','Team Collaboration'];
+    const state = { mode:'personal', answers:['Developing','Foundational','Advanced'], intents:{}, active:2, reviewed:false, ending:{}, path:'finished', evidence:'unavailable' };
     const intentData = {
       deeper:['Go deeper','Keep this Subskill; look for learning relevant to what I still need.'],
       check:['Check first','Explore a short check, where one is available.'],
@@ -277,8 +287,9 @@
       const answer = state.answers[i];
       if (answer === null) return 'No answer; do not infer a proficiency level';
       if (answer === 'I’m not sure') return 'Uncertain starting point; avoid assuming prior knowledge';
-      if (answer === 'Beginner') return 'Include relevant foundations and prerequisites';
-      if (answer === 'Intermediate') return 'Reduce repeated basics; prioritize application';
+      if (answer === 'Foundational') return 'Include relevant foundations and prerequisites';
+      if (answer === 'Developing') return 'Reduce repeated basics; prioritize application';
+      if (answer === 'Proficient') return 'Focus on the Goal’s specific context and any remaining needs; do not exclude automatically';
       if (state.intents[i] === 'deeper') return 'Look for relevant depth; keep the agreed target';
       if (state.intents[i] === 'check') return 'Check availability before promising an assessment';
       return 'Clarify intent; keep the Subskill until the learner chooses';
@@ -287,8 +298,9 @@
       const a = state.answers[i], intent = state.intents[i];
       if (a === null) return 'You can continue without an answer. We’ll keep the Goal’s scope and avoid assuming what you already know.';
       if (a === 'I’m not sure') return 'That’s okay. We’ll include useful foundations and help you find a starting point.';
-      if (a === 'Beginner') return 'We’ll look for the foundations you need before applying this area to your Goal.';
-      if (a === 'Intermediate') return 'We’ll prioritize application and avoid repeating introductions where the available content allows it.';
+      if (a === 'Foundational') return 'We’ll look for the foundations you need before applying this area to your Goal.';
+      if (a === 'Developing') return 'We’ll prioritize application and avoid repeating introductions where the available content allows it.';
+      if (a === 'Proficient') return 'We’ll focus on what your particular Goal still needs. Reporting reliable performance does not automatically remove this area.';
       if (intent === 'deeper') return 'We’ll keep this area and look for material that helps you move toward your Goal. If you want a different outcome, let’s clarify the Goal first.';
       if (intent === 'check') return 'A short check could help us choose a starting point. We’ll need to confirm a suitable check is available.';
       if (intent === 'remove') return 'This area will be removed when you confirm the revised personal Goal. Removing it does not mark it achieved.';
@@ -301,7 +313,7 @@
       document.getElementById('goal-context').innerHTML = state.mode === 'personal'
         ? '<strong>Personal Goal:</strong> the learner confirms the outcome and scope. Footing uses self-reported Subskill proficiency levels to shape planning before that confirmation. Goal completion is not available in Alpha.'
         : '<strong>Assigned static path:</strong> the admin supplies the Goal, its targets, and the approved path. Alpha does not ask the learner to set new targets or personalize this path before starting.';
-      document.getElementById('skill-list').innerHTML = skills.map((skill,i) => `<div class="skill ${i === state.active ? 'active' : ''}" role="group" aria-label="Self-reported starting level: ${skill}"><p class="skill-label">${skill}</p><div class="choices">${levels.map(level => `<button class="choice" data-skill="${i}" data-level="${level}" aria-pressed="${state.answers[i] === level}">${level}</button>`).join('')}</div></div>`).join('');
+      document.getElementById('skill-list').innerHTML = skills.map((skill,i) => `<div class="skill ${i === state.active ? 'active' : ''}" role="group" aria-label="Self-reported starting level: ${skill}"><p class="skill-label">${skill}</p><div class="choices">${levels.map(level => `<button class="choice" data-skill="${i}" data-level="${level}" aria-pressed="${state.answers[i] === level}" title="${levelMeanings[level]}">${level}</button>`).join('')}</div><p class="level-description">${state.answers[i] ? levelMeanings[state.answers[i]] : 'No answer—no level inferred.'}</p></div>`).join('');
       const i = state.active;
       document.getElementById('impact').innerHTML = `<span class="badge">Proposed planning response</span><h3 class="spaced">${skills[i]}</h3><div class="note spaced"><span class="label">What the learner sees</span>${learnerCopy(i)}</div>${state.answers[i] === 'Advanced' ? `<div class="stack spaced">${Object.entries(intentData).map(([key,[title,body]]) => `<button class="intent" data-intent="${key}" aria-pressed="${state.intents[i] === key}"><strong>${title}</strong><span>${body}</span></button>`).join('')}</div>` : ''}<div class="spaced"><span class="label">What goes to Path Planning</span><p class="small">${action(i)}. Keep the response attached to this Subskill and label it self-reported.</p></div>`;
       document.getElementById('review').disabled = pending() || empty();
@@ -314,7 +326,7 @@
       const form = document.getElementById('reflection-form');
       if (state.path !== 'finished') { form.innerHTML = '<div class="note">End-of-path reflection appears after the required learning is finished.</div>'; return; }
       if (empty()) { form.innerHTML = '<div class="note warning">Revisit the Goal first. Removing every Subskill cannot create a finished or achieved Goal.</div>'; return; }
-      form.innerHTML = '<h3>Where would you place yourself in each area today?</h3><p class="small muted">Optional self-report using the same Subskills and level descriptions as footing. There is no expected increase. This is not automatically a Wallet claim and does not change platform-attested evidence.</p>' + skills.map((skill,i) => !included(i) ? '' : `<div class="reflect"><label for="ending-${i}">${skill}</label><p class="before">At the start: ${state.mode === 'assigned' ? 'Not collected in this assigned-path example' : state.answers[i] ?? 'Not answered'}</p><select id="ending-${i}" data-ending="${i}"><option value="">Skip / no answer</option>${levels.map(level => `<option ${state.ending[i] === level ? 'selected' : ''}>${level}</option>`).join('')}</select></div>`).join('');
+      form.innerHTML = '<h3>Where would you place yourself in each area today?</h3><p class="small muted">Optional self-report using the same Subskills and level descriptions as footing. There is no expected increase. This is not automatically a Wallet claim and does not change platform-attested evidence.</p>' + skills.map((skill,i) => !included(i) ? '' : `<div class="reflect"><label for="ending-${i}">${skill}</label><p class="before">At the start: ${state.mode === 'assigned' ? 'Not collected in this assigned-path example' : state.answers[i] ?? 'Not answered'}</p><select id="ending-${i}" data-ending="${i}"><option value="">Skip / no answer</option>${levels.map(level => `<option value="${level}" ${state.ending[i] === level ? 'selected' : ''}>${level} — ${levelMeanings[level]}</option>`).join('')}</select></div>`).join('');
     }
     function renderEnding() {
       const ready = state.path === 'finished' && !empty();
@@ -332,11 +344,11 @@
       let assessment = 'No platform-attested evidence available in this example. Finishing the learning and submitting a self-report do not create attestation.';
       let next = 'Review your own before-and-after ratings or keep practicing. End-of-path assessment: coming soon. Goal completion is not available in Alpha.';
       if (state.evidence === 'passed') {
-        assessment = 'Platform-attested · illustrative result supplied by LEX / Skills: correctly filtered a table to show one month’s expenses. This supports a claim about that assessed task only, not the whole Subskill or report. It shows neither skill progress nor Goal completion. This status is supplied, not inferred from a pass score.';
+        assessment = 'Platform-attested · illustrative result supplied by LEX / Skills: defined measurable success criteria for a team goal. This supports a claim about that assessed task only, not the whole Team Direction Subskill or monthly-plan Goal. It shows neither skill progress nor Goal completion. This status is supplied, not inferred from a pass score.';
         next = 'Review what the evidence covers and, separately, compare your self-ratings. End-of-path assessment: coming soon. Goal completion is not available in Alpha.';
       }
       if (state.evidence === 'not-passed') {
-        assessment = 'No platform attestation from this check. The learner did not yet correctly filter a table to show one month’s expenses. This does not establish a level or progress for the full Subskill. Any self-report remains separate.';
+        assessment = 'No platform attestation from this check. The learner did not yet define measurable success criteria for a team goal. This does not establish a level or progress for the full Subskill. Any self-report remains separate.';
         next = 'Show the feedback and relevant practice; offer a retry where supported.';
       }
       if (!assessed && state.evidence !== 'unavailable') assessment += ' That Subskill was removed from this personal Goal, so this result does not validate a remaining target.';
