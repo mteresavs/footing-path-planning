@@ -125,17 +125,17 @@
         <div class="card">
           <div class="eyebrow">One example throughout</div>
           <div class="mode" role="group" aria-label="Goal type"><button class="choice" data-mode="personal" aria-pressed="true">Personal Goal</button><button class="choice" data-mode="assigned" aria-pressed="false">Assigned static path</button></div>
-          <h3 class="goal-title">Evaluate an AI support assistant before launch</h3>
-          <div class="goal-line"><strong>Design evaluation rubrics</strong><span>Define criteria to judge answer quality.</span></div>
-          <div class="goal-line"><strong>Build representative test cases</strong><span>Choose cases that reflect the assistant’s expected use.</span></div>
-          <div class="goal-line"><strong>Interpret evaluation results</strong><span>Use the results to identify remaining launch risks.</span></div>
-          <p class="small muted spaced">Illustrative outcomes, not official proficiency definitions.</p>
+          <h3 class="goal-title">Build a monthly spending report in Excel</h3>
+          <div class="goal-line"><strong>Sort and filter data</strong><span>Organize expenses by date and show only the month you need.</span></div>
+          <div class="goal-line"><strong>Calculate totals with formulas</strong><span>Add up spending for the month and for each category.</span></div>
+          <div class="goal-line"><strong>Create charts</strong><span>Show which categories account for the most spending.</span></div>
+          <p class="small muted spaced">Plain-language Subskill examples and illustrative outcomes, not official taxonomy labels or proficiency definitions.</p>
           <div id="goal-context" class="note spaced" aria-live="polite"></div>
         </div>
         <div class="card">
           <h3>The destination needs to be clear</h3>
           <p class="muted small">The intended model is a Goal with target proficiency for its required Subskills. The target says what “enough” means for this particular outcome.</p>
-          <div class="note spaced"><strong>Starting point:</strong> “I’m a beginner at writing rubrics.”<br><strong>Destination:</strong> “I need to define criteria for this launch decision.”<br><strong>Evidence:</strong> “Here is what an assessment actually demonstrated.”</div>
+          <div class="note spaced"><strong>Starting point:</strong> “I’m a beginner at Excel formulas.”<br><strong>Destination:</strong> “I need to calculate monthly spending by category without help.”<br><strong>Evidence:</strong> “In a practical check, I correctly calculated the totals from a new set of expenses.”</div>
           <p class="small muted spaced">These are three different pieces of information. The planner should not turn a starting-point answer into a target or assume every learner must become Advanced.</p>
           <div class="note warning spaced"><strong>Where Alpha stands, from the discussion:</strong> personal Goal setting captures the outcome, up to five Subskills, and familiarity. A measured target-proficiency completion loop is not established. Admin targets, where supplied, remain inputs even when we cannot yet validate them.</div>
         </div>
@@ -231,7 +231,7 @@
   </main>
   <script>
     const levels = ['I’m not sure','Beginner','Intermediate','Advanced'];
-    const skills = ['Design evaluation rubrics','Build representative test cases','Interpret evaluation results'];
+    const skills = ['Sort and filter data','Calculate totals with formulas','Create charts'];
     const state = { mode:'personal', answers:['Intermediate','Beginner','Advanced'], intents:{}, active:2, reviewed:false, ending:{}, path:'finished', evidence:'unavailable' };
     const intentData = {
       deeper:['Go deeper','Keep this Subskill; look for learning relevant to what I still need.'],
@@ -302,11 +302,11 @@
       let assessment = 'No assessment available in this example. We cannot validate the Goal’s targets.';
       let next = 'Review relevant learning or keep practicing. Show a validation option only when it is actually available.';
       if (state.evidence === 'passed') {
-        assessment = 'Passed a check covering part of “Design evaluation rubrics.” This shows performance on that assessed task only. No full-Subskill proficiency level or trust tier is inferred.';
+        assessment = 'Correctly filtered a table to show one month’s expenses—a check covering part of “Sort and filter data.” This shows performance on that assessed task only, not the ability to build the whole report. No full-Subskill proficiency level or trust tier is inferred.';
         next = 'See what the check covered and what still needs evidence. Keep unassessed targets visible.';
       }
       if (state.evidence === 'not-passed') {
-        assessment = 'The check’s criteria were not met for part of “Design evaluation rubrics.” It does not establish a level for the full Subskill.';
+        assessment = 'The learner did not yet correctly filter a table to show one month’s expenses. This checks part of “Sort and filter data”; it does not establish a level for the full Subskill.';
         next = 'Show the feedback and relevant practice; offer a retry where supported.';
       }
       if (!assessed && state.evidence !== 'unavailable') assessment += ' That Subskill was removed from this personal Goal, so this result does not validate a remaining target.';
