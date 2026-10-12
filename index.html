@@ -16,10 +16,10 @@
     :focus-visible { outline:3px solid #527ecc; outline-offset:3px; }
     a { color:inherit; text-underline-offset:4px; }
     h1,h2,h3,p { margin:0; }
-    h1 { font-size:clamp(38px,5vw,66px); line-height:1.08; letter-spacing:-.045em; max-width:900px; margin:18px 0; }
+    h1 { font-size:clamp(38px,5vw,54px); line-height:1.08; letter-spacing:-.045em; max-width:900px; margin:18px 0; }
     h2 { font-size:clamp(24px,3vw,32px); line-height:1.2; letter-spacing:-.025em; }
     h3 { font-size:18px; line-height:1.3; }
-    .page { max-width:1160px; margin:auto; padding:48px 24px 64px; }
+    .page { max-width:860px; margin:auto; padding:48px 24px 64px; }
     .muted { color:var(--muted); }
     .small { font-size:14px; }
     .eyebrow { font-size:12px; text-transform:uppercase; letter-spacing:.08em; font-weight:700; color:var(--muted); }
@@ -99,7 +99,20 @@
     footer { margin-top:40px; padding-top:20px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
     .widget-example {min-width:0} .widget-caption {display:flex;align-items:center;gap:12px;margin:0 0 12px;font-size:12px;color:var(--muted)} iframe {width:100%;height:470px;border:1px solid var(--line);border-radius:18px;background:white;margin-bottom:12px} .widget-example p {padding:0 8px} .primary {text-decoration:none;display:inline-block}
     [hidden] { display:none !important; }
+    .design-reference { margin:20px 0; }
+    .design-reference img { display:block; width:100%; max-width:800px; height:auto; border-radius:16px; }
+    .design-reference figcaption { max-width:800px; margin-top:10px; font-size:13px; color:var(--muted); }
+    .anatomy { margin:16px 0; }
+    .anatomy > div { display:grid; grid-template-columns:170px 1fr; gap:16px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .anatomy dt { font-weight:650; }
+    .anatomy dd { margin:0; }
+    .admin-state { border-left:3px solid var(--line); padding:12px 16px; margin-top:16px; background:var(--soft); border-radius:0 10px 10px 0; }
+    .admin-state small { display:block; margin-top:6px; }
+    iframe[data-helix-widget] { display:block; max-width:800px; border:0; border-radius:0; background:transparent; margin:0; }
+    .tradeoff { margin:16px 0; padding:14px 0; border-block:1px solid var(--line); }
+    .tradeoff p { font-size:15px; }
     @media(max-width:850px) {
+      .anatomy > div { grid-template-columns:1fr; gap:4px; }
       .page { padding:28px 18px 48px; }
       .two,.three { grid-template-columns:1fr; }
       .row { grid-template-columns:1fr; gap:6px; }
@@ -114,88 +127,97 @@
 <body>
 <main class="page">
 <header>
-  <div class="eyebrow">Goals &amp; Pathing · Product discussion · October 12, 2026</div>
-  <h1>Start with an outcome.<br>Find a useful way forward.</h1>
-  <p class="lede">A Goal captures what someone wants or needs to accomplish, why it matters, and what success would look like. The path is a way to get there—not the Goal itself.</p>
-  <div class="principle">Clarity about where I’m going. Momentum to take the next step.<small>The horizon strategy: turn intent into useful action, and preserve direction as the learner continues or changes course.</small></div>
-  <div class="bar"><a class="primary" href="./companion.html">Try the Helix prototype →</a><span class="small muted">Switch screens, current behavior, and Alpha ideas from the bottom-right demo controls.</span></div>
-  <nav aria-label="Artifact sections"><a href="#goal">What a Goal means</a><a href="#now">How it works today</a><a href="#alpha">Proposed Alpha improvements</a><a href="#ending">At the end</a><a href="#later">Beta and beyond</a></nav>
+  <div class="small muted">Goals &amp; Pathing · October 12, 2026</div>
+  <h1>Goals in Helix</h1>
+  <p class="lede">From what you want to be able to do, to learning—and evidence that you can do it.</p>
+  <p class="small muted spaced">Goal-setting PRD amendment · <a href="https://github.com/webedx-spark/agentic-platform/pull/8852">PR with changes</a> · Leave comments and reviews on the PR.</p>
+  <nav aria-label="Artifact sections"><a href="#goal">The Goal</a><a href="#planning">Planning</a><a href="#footing">Footing</a><a href="#beta">Beta</a></nav>
 </header>
 
 <section id="goal" aria-labelledby="goal-title">
-  <div class="heading"><span class="number">1</span><div><h2 id="goal-title">More than a list of skills</h2><p>Goals connect learning to a real need—and keep that purpose visible across sessions.</p></div></div>
-  <div class="grid three">
-    <div class="card"><h3>Clarify the outcome</h3><p>Help someone turn “be a better manager” into something useful to work on now. Use their context; don’t make them complete a planning exercise.</p></div>
-    <div class="card"><h3>Choose the next move</h3><p>Connect that outcome to relevant capabilities and a credible route. In the horizon vision, that could mean learning, practice, application, or assessment.</p></div>
-    <div class="card"><h3>Keep the direction</h3><p>Remember the purpose and useful work as the learner returns or changes course. Personal and assigned Goals keep their own ownership and requirements.</p></div>
-  </div>
-  <p class="small muted spaced">Not every question needs a durable Goal. The horizon PRDs prioritize a meaningful first action—not a completed Goal-setting form. Alpha implements a narrower static-path experience.</p>
-  <div class="card spaced"><h3>One example, from ambition to action</h3>
-    <div class="goal-line spaced"><strong>Broad ambition</strong><span>“Become a better team manager.” Too broad for one Alpha path.</span></div>
-    <div class="goal-line"><strong>Focused Goal</strong><span>“Create a clear plan for my team’s next month.”</span></div>
-    <div class="goal-line"><strong>Relevant Subskills</strong><span>Team Direction · Work Coordination · Team Collaboration</span></div>
-    <div class="goal-line"><strong>Desired capability</strong><span>For Team Direction: define team goals and success measures reliably on a real task. This makes the destination concrete; it does not claim we can measure arrival in Alpha.</span></div>
-    <div class="goal-line"><strong>Path</strong><span>Selected learning to support that outcome. Finishing the selected items is path completion, not proof of Goal achievement.</span></div>
-    <details><summary>Grounded in the Skills Blueprint</summary><p>The three Subskill names come from the Team Management example. Team Direction includes Goal and Measure Design, with the learning objective “Define measurable success criteria for each team goal.” Our Goal and focus are illustrative: learning that objective does not establish mastery of the whole Subskill.</p><p>The Blueprint defines the capability scope. The separate measurement brief proposes Foundational, Developing, Proficient, and Advanced. Those levels are not content difficulty, trust tiers, or validated self-report questions.</p></details>
-  </div>
+  <div class="heading"><span class="number">1</span><div><h2 id="goal-title">What is a Goal?</h2></div></div>
+  <p>A Goal describes what a learner wants or needs to be able to do. Helix turns that intent into focused learning and, ultimately, evidence of the relevant skills. <strong>The Goal is the outcome; the Path is the plan to work toward it.</strong></p>
+  <p class="spaced">For example, “Create a clear plan for my team’s next month” brings together Team Direction, Work Coordination, and Team Collaboration from the Team Management blueprint.</p>
+  <h3 class="spaced">Anatomy of a Goal</h3>
+  <dl class="anatomy">
+    <div><dt>Outcome</dt><dd>The capability to develop, with context about why it matters.</dd></div>
+    <div><dt>Subskills</dt><dd>The capabilities supporting the outcome. Up to five in Alpha; fewer when enough.</dd></div>
+    <div><dt>Target / due date</dt><dd>When the outcome is needed. Optional for learner-created Goals; an assigned Goal may have an admin deadline. This is not a content-duration budget.</dd></div>
+    <div><dt>Source &amp; requirements</dt><dd>Learner-created or assigned, including requirements the learner cannot waive.</dd></div>
+    <div><dt>Target proficiency</dt><dd>The level needed for each required Subskill—not one level for the whole Goal. <span class="small muted">Future assessed model; not set or tracked in static Alpha.</span></dd></div>
+  </dl>
+  <figure class="design-reference">
+    <iframe data-helix-widget src="widgets.html?view=goal" title="Review your Goal and edit familiarity" style="height:360px"></iframe>
+  </figure>
+  <div class="principle">Goal completion means demonstrating the required capability.<small>Assessment evidence must support the target proficiency for the required Subskills. Finishing content or reaching a due date is not enough.</small></div>
+  <p class="note spaced" id="alpha"><strong>In Alpha:</strong> show content completion and “Skill in development”—not measured proficiency progress or Goal completion. Admin reporting is consumption-only while skills assessments are unavailable.</p>
+  <details class="spaced"><summary>Proficiency and evidence</summary><p>Foundational, Developing, Proficient, and Advanced describe proficiency. Platform-attested and platform-verified describe the evidence behind a claim. A check covering only part of a Subskill cannot prove proficiency across the whole Subskill; Skills and Assessments must define sufficient coverage.</p></details>
 </section>
 
-<section id="now" aria-labelledby="now-title">
-  <div class="heading"><span class="number">2</span><div><h2 id="now-title">How it works today</h2><p>Current Goal-setting design and local main-branch widget behavior. This is not a live-production audit.</p></div></div>
-  <div class="grid two">
-    <div class="card"><ol class="steps">
-      <li><div><strong>Understand the need</strong><p>A clear outcome can go straight to a proposal. For a broad or uncertain request, offer narrower directions or ask only useful questions. Clarification questions are optional.</p></div></li>
-      <li><div><strong>Propose one focused Goal</strong><p>Normally three to five central Subskills; fewer for a narrow need. Keep the learner’s ambition visible and explain what this first Goal covers.</p></div></li>
-      <li><div><strong>Let the learner confirm the scope</strong><p>The Goal widget shows the outcome and related skills. Learners can add or remove skills before confirming. At least one relevant Subskill must remain.</p></div></li>
-      <li><div><strong>Use context and get to learning</strong><p>“Use this goal” skips footing. Existing Wallet information can remove the need to ask again; partial information normally leaves only missing areas to answer.</p></div></li>
-    </ol><p class="small muted">Footing means the starting information used to help select content. An optional answer also lets the learner express where they think they stand. It is not a target or proof of proficiency.</p></div>
-    <div class="widget-example"><div class="widget-caption"><span class="badge">Current widget pattern</span><span>Goal review · sample data</span></div><iframe title="Current Helix Goal review widget" src="./companion.html?embed=1&amp;version=now" loading="lazy"></iframe><p class="small muted">Reuses the Helix card, Badge, and Button components. Composition follows GoalReviewCard in local origin/main (5a53c72b47); catalog search and services are not connected.</p></div>
-  </div>
-  <div class="note spaced"><strong>What is missing:</strong> the current flow captures the destination as Goal text and Subskills, and the starting point as familiarity. It does not connect these to an agreed, measurable target proficiency. Current labels—Beginner, Intermediate, Advanced—also need a clear relationship to the Skills measurement model.</div>
+<section id="planning" aria-labelledby="planning-title">
+  <div class="heading"><span class="number">2</span><div><h2 id="planning-title">How a Goal becomes a learning Path</h2></div></div>
+  <ol class="steps">
+    <li><div><strong>Narrow the intent</strong><p>Turn “Become a better manager” into a useful first outcome, such as planning the team’s next month. Ask only what is needed to get started.</p></div></li>
+    <li><div><strong>Confirm the scope</strong><p>Review the outcome, Subskills, and any target date in the Goal widget.</p></div></li>
+    <li><div><strong>Understand the starting point</strong><p>For learner-created Goals, reuse available context and offer optional footing where useful. Skip learner footing for assigned Goals in Alpha: their Paths are not personalized.</p></div></li>
+    <li><div><strong>Generate, review, and start</strong><p>The planner selects learning for the confirmed scope and context. The learner reviews the Path before starting; for assigned static Paths, the admin approves the content.</p></div></li>
+  </ol>
+  <p class="note"><strong>Planner handoff:</strong> outcome and context, confirmed Subskills, optional date, sourced footing, and any stated learning intent. Include supported constraints such as language or maximum learning time. A date and a time budget are different inputs.</p>
+  <p class="small muted spaced">Exact input contracts and content-depth support still need confirmation with the planner team.</p>
 </section>
 
-<section id="alpha" aria-labelledby="alpha-title">
-  <div class="heading"><span class="number">3</span><div><h2 id="alpha-title">Proposed improvements for Alpha</h2><p>Make the destination and starting point understandable, without adding gates before learning.</p></div></div>
-  <div class="grid two">
-    <div class="card"><h3>Connect the Goal to a desired capability</h3><p>Offer an optional “What would you like to be able to do?” using concrete Subskill descriptions. For example: “Define clear goals and success measures reliably on a real task.”</p><p>This connects to target proficiency conceptually. In Alpha, it is a stated aspiration—not an assessed target, a guaranteed path outcome, or an admin requirement we can track.</p><h3 class="spaced">Make footing understandable</h3><p>Use the same capability descriptions when asking where the learner stands. Keep existing information’s source visible, and let the learner skip or say “I’m not sure.”</p><p class="small muted">The proposed scale needs Skills review and learner testing. Understanding a level label cannot be assumed.</p></div>
-    <div class="card"><span class="badge">Illustrative · not a validated rubric</span><h3 class="spaced">Team Direction: define clear team goals</h3>
-      <div class="goal-line spaced"><strong>Foundational</strong><span>With support and a worked example.</span></div>
-      <div class="goal-line"><strong>Developing</strong><span>Unaided, with deliberate effort.</span></div>
-      <div class="goal-line"><strong>Proficient</strong><span>Reliably on a real task.</span></div>
-      <div class="goal-line"><strong>Advanced</strong><span>In unfamiliar situations or a new domain.</span></div>
-      <p class="small muted spaced">Example: “I want to do this reliably” describes the destination; “I can do it with support” describes the learner’s reported starting point. Neither is assessed evidence.</p>
+<section id="footing" aria-labelledby="footing-title">
+  <div class="heading"><span class="number">3</span><div><h2 id="footing-title">How footing works</h2><p>Current familiarity, used to choose relevant learning.</p></div></div>
+  <p>Footing checks how familiar the learner is with each Subskill. It helps identify where foundations are useful and where the learner wants more depth. It does not create a proficiency claim in the Wallet.</p>
+  <p class="spaced"><strong>Footing is optional for self-initiated Goals.</strong> It helps tailor content, but learners should not have to rate every Subskill before they can start learning. Use available context when they skip; an unanswered question means unknown, not beginner. Assigned Goals skip footing entirely in Alpha because their Paths are not personalized.</p>
+  <p class="spaced">Selecting <strong>Advanced</strong> opens an optional question about intent. It does not assume the learner wants to skip the Subskill.</p>
+  <p class="small muted spaced">Design still iterating · Advanced follow-up not yet implemented in main. Try the sliders below; changes stay in this example.</p>
+  <figure class="design-reference">
+    <iframe data-helix-widget src="widgets.html?view=intent" title="Footing and per-Subskill learning intent" style="height:650px"></iframe>
+  </figure>
+  <h3>What each choice means for planning</h3>
+  <dl class="anatomy">
+    <div><dt>Remove from this Goal</dt><dd>Narrow the Goal before planning and pass only the remaining Subskills. This does not delete a Wallet skill or prove it is known.</dd></div>
+    <div><dt>Teach me advanced applications</dt><dd>Keep the Subskill and pass a preference for more depth. Suitable content depends on tagging and coverage.</dd></div>
+  </dl>
+  <p class="small muted spaced">This scope change applies to learner-created Goals, not permission to waive assigned requirements. If nothing remains to learn, help the learner refine the Goal.</p>
+  <h3 class="spaced">How does each Path use this information?</h3>
+  <p class="spaced">The confirmed Goal defines what to learn. Footing and intent help determine where to start; how they affect the learning depends on the Path.</p>
+  <div class="grid two spaced">
+    <div class="card">
+      <h3>Static Path</h3>
+      <p class="muted">Footing guides content search.</p>
+      <div class="tradeoff"><span class="label">How it is used</span><p>The planner uses Subskill familiarity and intent in semantic search for authored content, before the learner accepts the Path.</p></div>
+      <div class="tradeoff"><span class="label">Advanced familiarity</span><p>If the learner wants more depth, seek applied material rather than foundational introductions. Keep the Subskill unless the learner chooses to remove it from the Goal.</p></div>
+      <div class="tradeoff"><span class="label">Some experience, starting fresh, or unknown</span><p>Use the available context to find a useful starting point. There is no fixed rule to skip particular lesson types; unanswered footing stays unknown.</p></div>
+      <div class="tradeoff"><span class="label">What changes—and what does not</span><p>Footing affects content selection, not a verified proficiency match or guaranteed removal of introductory items within selected sections. The accepted Path stays fixed.</p></div>
+      <div class="tradeoff"><span class="label">Assessment</span><p>Static Alpha has no end-of-path skills assessment. Familiarity does not prove the Goal is complete.</p></div>
+      <p class="small muted"><strong>Alpha boundary:</strong> self-initiated footing is optional. Assigned Goals skip it; everyone receives the same admin-approved Path.</p>
+    </div>
+    <div class="card">
+      <h3>Adaptive Path</h3>
+      <p class="muted">Footing adjusts where teaching starts.</p>
+      <div class="tradeoff"><span class="label">How it is used</span><p>LEX uses each Subskill’s footing to include or skip teaching bundles, and explains what was left out.</p></div>
+      <div class="tradeoff"><span class="label">Advanced familiarity</span><p>The adaptive draft calls this “Expert”: skip that Subskill’s teaching bundles, while keeping it in the Goal and its assessment requirements.</p></div>
+      <div class="tradeoff"><span class="label">Some experience, starting fresh, or unknown</span><p><strong>Intermediate:</strong> keep the bundles, skip “Why” and “What,” and begin at “How.” <strong>Novice or no data:</strong> offer the full experience; unknown is not a novice claim.</p></div>
+      <div class="tradeoff"><span class="label">What changes—and what does not</span><p>Familiar basics can be omitted without narrowing the Goal. An experienced PM learning AI for PRDs may skip PRD basics while retaining AI applications in that context.</p></div>
+      <div class="tradeoff"><span class="label">Assessment</span><p>Expert in every required Subskill can lead straight to the final assessment, where available—not automatic Goal completion.</p></div>
+      <p class="small muted"><strong>Alignment remaining:</strong> confirm the Expert/Advanced mapping and how “teach me advanced applications” affects exclusion. These are aligned draft rules; shipping status is unverified. Add-back is P2; remediation after a failed assessment needs separate scope.</p>
     </div>
   </div>
-  <div class="note warning spaced"><strong>A proposal that needs explicit agreement.</strong> The supplied Alpha scope decision says not to set or track static-path target proficiency. Optional desired-capability wording explores that connection without a proficiency tracker. A saved target-level field would be a scope change—not something already agreed.</div>
-  <p class="spaced"><a href="./companion.html?version=idea">See the proposed Goal widget →</a> <span class="small muted">Open “Describe where I want to get to” or “Review starting point.” Both are optional.</span></p>
-  <div id="expert" class="card spaced"><h3>Keep the Expert follow-up optional</h3><p>“I already know this” could mean “skip it” or “help me go deeper.” Ask which, without blocking the learner.</p><p><strong>Skip:</strong> pass that preference to planning before acceptance. <strong>Deeper:</strong> clarify the desired outcome; current tagging does not guarantee advanced content. <strong>No answer:</strong> let the learner continue; our proposed default does not assume permission to exclude.</p>
-    <details><summary>Wallet writes and planning ownership</summary><p>The supplied PSW thread agrees that a submitted Expert answer creates a self-attested claim. That is separate from the optional learning preference and is not platform-attested or verified. Expert is not silently equated with Advanced.</p><p>The older thread assigns exclusion to LEX; the newer LEX PRD assigns construction to PSW / Planner and fixes the path after acceptance. Resolve this conflict before implementation. Required assigned learning is not waived by a learner’s self-report. If exclusions leave no useful learning, offer Goal refinement—not an empty path or an achieved Goal.</p></details>
+</section>
+
+<section id="beta" aria-labelledby="beta-title">
+  <div class="heading"><span class="number">4</span><div><h2 id="beta-title">How Goals expand in Beta</h2><p>Future direction; delivery depends on the capabilities below.</p></div></div>
+  <div class="stack">
+    <div><h3>Connected Goals and Paths for broad ambitions</h3><p>Keep “Become a better manager” as the broader ambition. Break it into focused Goals—plan the team’s work, develop team members, and lead a change—each with its own Subskills and Path. Recommend an order, let the learner choose where to start, and review each Goal just before starting its Path.</p><p class="small spaced"><a href="https://github.com/webedx-spark/agentic-platform/pull/5211">Broad Goal Decomposition · PR #5211</a> · <a href="https://github.com/webedx-spark/agentic-platform/blob/431c616a5ceb6ade82a1f637ca6ce1a72eee068c/docs/initiatives/helix/prds/2026-09-04-broad-goal-decomposition.md">Read the PRD</a></p></div>
+    <div><h3>Changes after learning starts</h3><p>Let learners revise the Goal and add, remove, or change Subskills. Preview the Path changes before confirmation, preserve relevant completed work, and respect assigned requirements.</p></div>
+    <div><h3>Assessed completion and admin signals</h3><p>Helix recommends target proficiency for each Subskill based on the Goal and available learner knowledge, with an explanation of what the target means. When assessment evidence supports all required targets, mark the Goal complete. For assigned Goals, send supported completion and proficiency signals to admins with their evidence and trust tier.</p><p class="small muted spaced">Requires agreed targets, assessment coverage, and reporting permissions.</p></div>
   </div>
 </section>
 
-<section id="ending" aria-labelledby="ending-title">
-  <div class="heading"><span class="number">4</span><div><h2 id="ending-title">At the end: a useful reflection, not proof</h2><p>Goal completion is not available in Alpha. The end-of-path Skill Check and the platform-attested proficiency claims it would produce are P1.</p></div></div>
-  <div class="grid two">
-    <div class="card"><span class="badge">Specified LEX Alpha ending</span><h3 class="spaced">“You’ve finished the learning in this path.”</h3><p>Celebrate the selected items being complete. Show “Skills assessment coming soon.” No Goal-complete state, skill-progress bar, proficiency claim, or course certificate.</p></div>
-    <div class="card"><span class="badge">Additional Alpha proposal</span><h3 class="spaced">“Where would you place yourself now?”</h3><p>Offer the same optional Subskill questions again. If the learner described a desired capability, keep that aspiration visible—but never show “target achieved.”</p><p class="small muted">With a comparable starting self-report, show the two answers. Without one, show the ending answer alone. Never add a mandatory starting survey just to get a comparison.</p></div>
-  </div>
-  <div class="note spaced"><strong>Example:</strong> wanted “reliably on a real task”; reported “with support” before; reports “reliably” now. We learned how the learner describes their ability—not that proficiency improved or the Goal was achieved.</div>
-  <details><summary>What would make the signal useful?</summary><p>Test whether learners understand the descriptions, whether the content felt appropriate for their starting point and aspiration, and whether their answers change. Report response and skip rates: optional answers are a selected sample, not an upskilling score.</p><p>Skills’ concern is valid: self-report alone is weak evidence for employers. A change may reflect confidence or a better understanding of the question. Do not turn it into verified growth, an admin capability ranking, or automatic Wallet updates. Only compare matching Subskill scope and the same question/scale; existing Wallet information is not a new baseline self-report.</p></details>
-  <details><summary>What remains unproven in Alpha?</summary><p>Self-report does not validate the assessment-to-proficiency loop. The LEX PRD says authored quiz completion produces no Platform-Observed skill signals in Alpha. Its absence is not fixed by collecting reflections.</p><p>The Expert write agreement does not settle ending-answer writes: agree those separately with Skills / PSW and preserve stronger evidence. Historical Platform-Observed data is also partial because only around 3K courses are tagged; missing history does not mean missing capability.</p><p>This prototype tests comprehension and usefulness. It does not validate live Goal mapping, path generation, or signal quality—the three hypotheses identified by Team Connect.</p></details>
-</section>
-
-<section id="later" aria-labelledby="later-title">
-  <div class="heading"><span class="number">5</span><div><h2 id="later-title">Keep the ambition. Right-size the next step.</h2></div></div>
-  <div class="grid three">
-    <div class="card"><span class="badge">Alpha</span><h3 class="spaced">Narrow, don’t silently truncate</h3><p>One focused Goal, up to five Subskills. If the request is bigger, agree a useful first outcome. Five is a planning limit—not the size of someone’s ambition.</p></div>
-    <div class="card"><span class="badge">Beta direction</span><h3 class="spaced">Decompose a broader Goal</h3><p>“Become an effective manager” could include monthly planning, developing the team, and leading change. Let the learner review connected smaller Goals and choose where to start. Keep the broader purpose visible.</p></div>
-    <div class="card"><span class="badge">Later direction</span><h3 class="spaced">Change course without starting over</h3><p>Allow Goal changes, show what changes in the path, and preserve useful work. Add assessed targets only when the coverage, thresholds, and evidence can support them.</p></div>
-  </div>
-  <p class="small muted spaced">A future skill-development Goal can be evaluated against agreed target capability and sufficient evidence. Even then, a partial assessment is not proof of a whole Subskill—and a broader work outcome may need more than a proficiency result.</p>
-</section>
-<section aria-labelledby="decisions-title"><h2 id="decisions-title">Agree these before adding scope</h2><div class="card spaced"><p><strong>Skills + PSW:</strong> plain-language level descriptions, whether desired-capability framing is appropriate for Alpha, and how reflection data is used—not automatically written to the Wallet.</p><p><strong>PSW + Planner + LEX:</strong> optional Expert handling, exclusions before acceptance, and refinement when there is little left to teach.</p><p><strong>Product + Design + LEX:</strong> whether optional reflection earns its place beyond the committed ending. Protect the direct route into learning.</p>
-<details><summary>Sources and confidence</summary><p>Vision: <a href="https://github.com/webedx-spark/agentic-platform/blob/c805b138c0/docs/initiatives/helix/horizon-prds/2026-09-11-goals-and-pathing-memo.md">Goals and Pathing horizon PRD</a> and <a href="https://github.com/webedx-spark/agentic-platform/blob/c805b138c0/docs/initiatives/helix/horizon-prds/2026-09-11-pathing-and-progress-experience-model.md">Pathing &amp; Progress</a>. Horizon direction is not an Alpha commitment.</p><p>Current design: local Learner Goal Setting PRD (August 28), GoalReviewCard and SkillFamiliarityStep; widget rechecked against local origin/main 5a53c72b47. No production audit. Narrowing is PRD behavior; the conversation shown is illustrative. The optional aspiration and reflection widgets are proposals, not main-branch features.</p><p>Skills: <a href="https://docs.google.com/document/d/1jS3ahKZrFTCPGWuWvCuCabw9u7vJa8mAWYZtAoYt0As/edit">Skills Definition Framework</a> and <a href="https://docs.google.com/document/d/12o4OFNM0XOUTgC1MVASEss0sTX7nu6P6uD42L1w2iJw/edit">Skill Measurement Data brief</a>. <a href="https://docs.google.com/spreadsheets/d/1SUMPsEsG_vWCunib4RkOWGbvNgDkZuqoScKDf2u0x84/edit?gid=1609163590#gid=1609163590">WIP stories</a> inform decomposition and editing; some rows still label decomposition Alpha, unlike the Beta direction requested here.</p><p>Alpha boundary: supplied Skills scope discussion, PSW Expert thread, October 9 Team Connect release-options paper, and Static Paths LEX PRD. The release options are alternatives, not evidence of a final selection.</p></details></div></section>
-<footer>Discussion artifact, not a PRD. Prototype uses sample data and real Helix UI primitives; no real Goal, Profile, Wallet, or assessment writes. No production files changed.</footer>
+<footer>Goal-setting experience reference. Implementation gaps are noted inline; Alpha follows the supplied static-path scope.</footer>
 </main>
+<script src="widget-frames.js"></script>
 </body>
 </html>
